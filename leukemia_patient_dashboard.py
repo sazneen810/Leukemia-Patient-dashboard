@@ -43,19 +43,16 @@ st.plotly_chart(px.scatter_3d(df_filtered,
     x="Age (years)", y="Hemoglobin Level (g/dL)", z="Survival Time (months)", color="Gender"))
 
 # 4. Parallel Coordinates (Improved)
+
+# 4. Parallel Coordinates
 st.subheader("Multivariate: Parallel Coordinates Plot")
-selected_dims = st.multiselect("Select variables to compare:", numeric_cols, default=numeric_cols)
-fig = px.parallel_coordinates(
-    df_scaled_filtered,
-    dimensions=selected_dims,
-    color="Survival Time (months)",
-    color_continuous_scale=px.colors.sequential.Viridis
-)
-fig.update_layout(
+st.plotly_chart(px.parallel_coordinates(df_filtered,
+    dimensions=numeric_cols, color="Survival Time (months)") 
+     fig.update_layout(
     font=dict(size=11),
     margin=dict(l=50, r=50, t=30, b=30)
 )
-st.plotly_chart(fig)
+      )
 
 
 # 5. Correlation Heatmap
